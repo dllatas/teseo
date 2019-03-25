@@ -1,6 +1,6 @@
 {
   "name": "teseo",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Small utility that helps to find a way out of a relational db dependency labyrinth",
   "keywords": [
     "relational-database",
