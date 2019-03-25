@@ -1,26 +1,26 @@
 const { describe, it } = require('mocha');
 const { assert } = require('chai');
-const sort = require('../src/sort');
+const teseo = require('../src');
 
 describe('sort module test suite', () => {
   it('isParentIncluded returns false', () => {
     const sorted = ['master', 'detail'];
     const master = ['neo'];
-    const actual = sort.isParentIncluded(sorted, master);
+    const actual = teseo.sort.isParentIncluded(sorted, master);
     assert.isFalse(actual);
   });
 
   it('sort discards a child without master in sort', () => {
     const tables = [{ name: 'master' }, { name: 'neo', master: ['detail'] }, { name: 'detail', master: ['master'] }];
     const expected = { order: ['master', 'detail', 'neo'] };
-    const actual = sort.execute(tables);
+    const actual = teseo.sort.execute(tables);
     assert.deepEqual(actual, expected);
   });
 
   it('sort returns sorted when there are no unsorted tables', () => {
     const tables = [{ name: 'master' }, { name: 'neo' }, { name: 'detail' }];
     const expected = { order: ['master', 'detail', 'neo'] };
-    const actual = sort.execute(tables);
+    const actual = teseo.sort.execute(tables);
     assert.sameMembers(actual.order, expected.order);
   });
 
@@ -32,7 +32,7 @@ describe('sort module test suite', () => {
         },
       },
     };
-    const actual = sort.get(source, 'everything.is.allright');
+    const actual = teseo.sort.get(source, 'everything.is.allright');
     const expected = 'name';
     assert.strictEqual(actual, expected);
   });
@@ -45,7 +45,7 @@ describe('sort module test suite', () => {
         },
       },
     };
-    const _get = () => sort.get(source, 'everything.is.allright', { mandatory: true });
+    const _get = () => teseo.sort.get(source, 'everything.is.allright', { mandatory: true });
     assert.throws(_get);
   });
 
@@ -60,7 +60,7 @@ describe('sort module test suite', () => {
       { _name: 'neo', _master: ['detail'] },
       { _name: 'detail', _master: ['master'] },
     ];
-    const actual = sort.analyzer(tables);
+    const actual = teseo.sort.analyzer(tables);
     assert.deepEqual(actual, expected);
   });
 });
