@@ -1,9 +1,11 @@
-const { describe, it } = require('mocha');
 const path = require('path');
+const { describe, it } = require('mocha');
 const { assert } = require('chai');
+const { file, conversion } = require('chumpi');
 const { cli } = require('../src');
-const { readFilePromise } = require('../src/file');
-const { execute } = require('../src/conversion');
+
+const { execute } = conversion;
+const { readFilePromise } = file;
 
 describe('teseo basic cases suite', () => {
   it('Parent with one child', async () => {

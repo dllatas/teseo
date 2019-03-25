@@ -1,4 +1,4 @@
-const validation = require('./validation');
+const chumpi = require('chumpi');
 
 const schema = {
   _name: {
@@ -50,7 +50,7 @@ const analyzer = (tables, name = 'name', master = 'master') => {
 
 const execute = (tables, master = 'master', name = 'name') => {
   const analyzed = analyzer(tables, name, master);
-  validation.enforce(analyzed, schema);
+  chumpi.validation.enforce(analyzed, schema);
 
   const sorted = analyzed.filter(t => !t._master).map(t => t._name);
   let unsorted = analyzed.filter(t => t._master);

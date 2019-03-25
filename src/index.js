@@ -1,7 +1,7 @@
-const teseo = require('./teseo');
+const main = require('./main');
 const cli = require('./cli');
 
 module.exports = {
-  teseo,
+  main,
   cli,
 };

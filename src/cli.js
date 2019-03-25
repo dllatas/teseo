@@ -1,16 +1,16 @@
-const teseo = require('./teseo');
-const io = require('./io');
-const conversion = require('./conversion');
-const file = require('./file');
+const chumpi = require('chumpi');
+const main = require('./main');
+const message = require('./message');
+const cliOptions = require('./cliOptions');
 
 async function cli(input) {
-  const options = io.capture(input);
+  const options = chumpi.io.capture(input, message, cliOptions);
   if (options.console) {
     return options;
   }
-  const result = await teseo(options);
-  const dumped = await conversion.execute('dump', options.format, result);
-  const { filename } = await file.write(dumped, options);
+  const result = await main(options);
+  const dumped = await chumpi.conversion.execute('dump', options.format, result);
+  const { filename } = await chumpi.file.write(dumped, options);
   return filename;
 }
 
