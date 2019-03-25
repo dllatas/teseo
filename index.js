@@ -1,3 +1,3 @@
-const { teseo } = require('./src');
+const teseo = require('./src');
 
 module.exports = teseo;
