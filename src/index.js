@@ -5,5 +5,5 @@ const sort = require('./sort');
 module.exports = {
   main,
   cli,
-  sort,
+  sort: (tables, master, name) => sort.execute(tables, master, name),
 };
