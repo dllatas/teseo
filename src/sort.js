@@ -70,7 +70,7 @@ const execute = (tables, master = 'master', name = 'name') => {
   let unsorted = analyzed.filter(t => t._master);
 
   if (sorted.length === tables.length) {
-    return { order: sorted };
+    return tables;
   }
 
   // For each element on unsortedTables, check if its masters have been sorted already
