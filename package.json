@@ -1,6 +1,6 @@
 {
   "name": "teseo",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Small utility that helps to find a way out of a relational db dependency labyrinth",
   "keywords": [
     "relational-database",
@@ -26,17 +26,18 @@
     "url": "https://github.com/dllatas/teseo"
   },
   "dependencies": {
-    "js-yaml": "^3.12.0"
+    "chumpi": "^0.1.0",
+    "js-yaml": "^3.13.0"
   },
   "preferGlobal": true,
   "bin": "./cli.js",
   "devDependencies": {
     "chai": "^4.2.0",
-    "eslint": "^5.9.0",
+    "eslint": "^5.15.3",
     "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-plugin-import": "^2.14.0",
-    "husky": "^1.2.0",
+    "eslint-plugin-import": "^2.16.0",
+    "husky": "^1.3.1",
     "mocha": "^5.2.0",
-    "nyc": "^13.1.0"
+    "nyc": "^13.3.0"
   }
 }
