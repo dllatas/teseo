@@ -13,16 +13,16 @@ describe('sort module test suite', () => {
 
   it('sort discards a child without master in sort', () => {
     const tables = [{ name: 'master' }, { name: 'neo', master: ['detail'] }, { name: 'detail', master: ['master'] }];
-    const expected = { order: ['master', 'detail', 'neo'] };
+    const expected = [{ name: 'master' }, { name: 'detail', master: ['master'] }, { name: 'neo', master: ['detail'] }];
     const actual = teseo.sort(tables);
     assert.deepEqual(actual, expected);
   });
 
   it('sort returns sorted when there are no unsorted tables', () => {
     const tables = [{ name: 'master' }, { name: 'neo' }, { name: 'detail' }];
-    const expected = { order: ['master', 'detail', 'neo'] };
     const actual = teseo.sort(tables);
-    assert.sameMembers(actual.order, expected.order);
+    const expected = [{ name: 'master' }, { name: 'neo' }, { name: 'detail' }];
+    assert.deepEqual(actual, expected);
   });
 
   it('get returns the name property from a nested object', () => {
