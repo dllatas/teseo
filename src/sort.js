@@ -27,6 +27,18 @@ const retrieve = (source, props) => {
   if (props.length === 0) {
     return _source;
   }
+  if (Array.isArray(_source)) {
+    // Get next props items
+    return _source.map((s) => {
+      if (s[props[0]]) {
+        return s[props[0]];
+      }
+      return s;
+    });
+  }
+  if (!_source) {
+    return _source;
+  }
   return retrieve(_source, props);
 };
 
@@ -49,6 +61,8 @@ const analyzer = (tables, name = 'name', master = 'master') => {
 };
 
 const execute = (tables, master = 'master', name = 'name') => {
+  console.info(`Schema to sort has ${tables.length} tables`);
+
   const analyzed = analyzer(tables, name, master);
   chumpi.validation.enforce(analyzed, schema);
 
@@ -72,8 +86,21 @@ const execute = (tables, master = 'master', name = 'name') => {
       }
     }
   }
+  console.info(`Sorted schema has ${sorted.length} tables`);
 
-  return { order: sorted };
+  // Return tables content in the sort order
+  const sortedSchema = sorted.reduce((acc, table) => {
+    // need to loop trough tables and compare the name string against table
+    // if it matches, then I push the whole tables instance to acc
+    for (const t of tables) {
+      if (table === get(t, name, { mandatory: true })) {
+        acc.push(t);
+      }
+    }
+    return acc;
+  }, []);
+
+  return sortedSchema;
 };
 
 module.exports = {
