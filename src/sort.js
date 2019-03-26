@@ -78,6 +78,12 @@ const execute = (tables, master = 'master', name = 'name') => {
   // sortedTables has length == 0
   while (unsorted.length > 0) {
     for (const us of unsorted) {
+      // Check if the table depends on itself
+      if (us._master.includes(us._name)) {
+        // Remove us._name from us.master
+        us._master = us._master.filter(m => m !== us._name);
+      }
+
       if (isParentIncluded(sorted, us._master)) {
         // Push element to sorted array
         sorted.push(us._name);
@@ -87,6 +93,7 @@ const execute = (tables, master = 'master', name = 'name') => {
     }
   }
   console.info(`Sorted schema has ${sorted.length} tables`);
+  console.info(`The Sorted schema is ${sorted}`);
 
   // Return tables content in the sort order
   const sortedSchema = sorted.reduce((acc, table) => {
