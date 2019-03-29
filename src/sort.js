@@ -1,4 +1,5 @@
 const chumpi = require('chumpi');
+const logger = chumpi.logger('teseo');
 
 const schema = {
   _name: {
@@ -61,8 +62,7 @@ const analyzer = (tables, name = 'name', master = 'master') => {
 };
 
 const execute = (tables, master = 'master', name = 'name') => {
-  console.info(`Schema to sort has ${tables.length} tables`);
-
+  logger.info(`Schema to sort has ${tables.length} tables`);
   const analyzed = analyzer(tables, name, master);
   chumpi.validation.enforce(analyzed, schema);
 
@@ -92,8 +92,8 @@ const execute = (tables, master = 'master', name = 'name') => {
       }
     }
   }
-  console.info(`Sorted schema has ${sorted.length} tables`);
-  console.info(`The Sorted schema is ${sorted}`);
+  logger.info(`Sorted schema has ${sorted.length} tables`);
+  logger.info(`The Sorted schema is ${sorted}`);
 
   // Return tables content in the sort order
   const sortedSchema = sorted.reduce((acc, table) => {
