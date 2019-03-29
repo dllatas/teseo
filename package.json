@@ -1,6 +1,6 @@
 {
   "name": "teseo",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Small utility that helps to find a way out of a relational db dependency labyrinth",
   "keywords": [
     "relational-database",
@@ -11,7 +11,7 @@
   ],
   "main": "index.js",
   "scripts": {
-    "test": "nyc mocha --recursive",
+    "test": "NODE_ENV=test nyc mocha --recursive",
     "lint-full": "./node_modules/.bin/eslint .",
     "lint-full-fix": "./node_modules/.bin/eslint --fix .",
     "lint": "LIST=`git diff-index --name-only --diff-filter=d HEAD | grep .*\\.js | grep -v json`; if [ \"$LIST\" ]; then ./node_modules/.bin/eslint $LIST; fi",
@@ -26,7 +26,7 @@
     "url": "https://github.com/dllatas/teseo"
   },
   "dependencies": {
-    "chumpi": "^0.1.0",
+    "chumpi": "^0.1.4",
     "js-yaml": "^3.13.0"
   },
   "preferGlobal": true,

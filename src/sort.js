@@ -1,4 +1,5 @@
 const chumpi = require('chumpi');
+
 const logger = chumpi.logger('teseo');
 
 const schema = {
